@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Real raw zoo logs must never be committed (Section 2.1 ethics note)
+data/raw/*
+!data/raw/.gitkeep
+
+# Large generated files (regenerate locally instead of committing)
+data/processed/*.csv
+!data/processed/.gitkeep
