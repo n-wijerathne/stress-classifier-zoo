@@ -2,8 +2,10 @@
 
 **Module:** IT41043 — Intelligent Systems, Horizon Campus (2026)
 **Milestone:** Milestone 2 — Methodology and Data Description
+
 **Individual focus:** E.N. Sandeepani Wijerathne (ITBIN-2313-0128) — *The Role of Feeding
 Schedules and Keeper Routines in Predicting Stress-Indicative Behaviours in Captive Zoo Animals*
+
 **Group partner:** D.B. Senarathna (ITBIN-2313-0105) — visitor-interaction & environmental-conditions focus
 
 ## Project Summary
