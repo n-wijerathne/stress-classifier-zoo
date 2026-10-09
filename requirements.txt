@@ -1,6 +1,8 @@
-numpy>=1.26
-pandas>=2.0
-scikit-learn>=1.4
-scipy>=1.12
-tensorflow>=2.15   # only required for src/models_lstm.py (Branch B)
-pytest>=8.0        # for running tests/
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+scipy>=1.10.0
+statsmodels>=0.14.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+pytest>=7.3.0

@@ -1,106 +1,135 @@
 # Stress Classifier — Zoo Animals (Feeding Schedule & Keeper Routine Focus)
 
-**Module:** IT41043 — Intelligent Systems, Horizon Campus (2026)
-**Milestone:** Milestone 2 — Methodology and Data Description
+**Module:** IT41043 — Intelligent Systems, Horizon Campus (2026)  
+**Milestone:** Milestone 2 — Methodology and Data Description  
 
-**Individual focus:** E.N. Sandeepani Wijerathne (ITBIN-2313-0128) — *The Role of Feeding
-Schedules and Keeper Routines in Predicting Stress-Indicative Behaviours in Captive Zoo Animals*
+### **Authors & Individual Focus**
+* **E.N. Sandeepani Wijerathne (ITBIN-2313-0128)** — *The Role of Feeding Schedules and Keeper Routines in Predicting Stress-Indicative Behaviours in Captive Zoo Animals*
+* **D.B. Senarathna (ITBIN-2313-0105)** — *Visitor Interaction & Environmental Conditions Focus*
 
-**Group partner:** D.B. Senarathna (ITBIN-2313-0105) — visitor-interaction & environmental-conditions focus
+---
 
-## Project Summary
+## 📌 Project Summary
+This project investigates whether a supervised machine learning classifier trained on **feeding-schedule** and **keeper-routine** variables (meal timing, inter-meal interval, diet variety, keeper proximity, keeper arrival time) can detect stress-indicative behaviours in captive zoo animals more accurately than a baseline classifier trained on general movement/trajectory features alone.
 
-This project investigates whether a supervised machine learning classifier trained on
-feeding-schedule and keeper-routine variables (meal timing, inter-meal interval, diet
-variety, keeper proximity, keeper arrival time) can detect stress-indicative behaviours
-in captive zoo animals more accurately than a baseline classifier trained on general
-movement/trajectory features alone. Full methodology, dataset description, model
-architecture, baseline definition, and evaluation plan are documented in the
-Milestone 2 report (not included in this repo for size/format reasons — see the
-module submission portal).
+---
 
 ## ⚠️ Current Data Status
+Real field data collection is pending institutional and ethical approval (Section 2.1 of the methodology). To build, validate, and demonstrate the machine learning pipeline end-to-end, `src/generate_synthetic_data.py` produces a synthetic dataset (`data/processed/synthetic_session_bins.csv`) grounded in behavioral domain literature.
 
-**Real field data has not yet been collected.** Zoo access and the required
-institutional/ethical approvals (Section 2.1 of the methodology) are still pending.
+Once real data collection is completed, real logs will replace the synthetic file, and the preprocessing and model evaluation pipeline (`src/preprocess.py` onward) will execute unchanged.
 
-To allow the pipeline below to be built, tested, and demonstrated ahead of approval,
-`src/generate_synthetic_data.py` produces a **synthetic dataset** that follows the
-schema and statistical assumptions described in the methodology (assumptions are
-documented in the script itself and grounded in the cited literature). **Synthetic
-output must never be presented as real collected data.** Once real data collection is
-complete, it will replace the synthetic file at the same path
-(`data/processed/synthetic_session_bins.csv`) and the rest of the pipeline
-(`preprocess.py` onward) will run unchanged.
+---
 
-## Project Status
+## 🚦 Project Status & Roadmap
+- [x] **Milestone 1**: Research gap, question, and scope finalized
+- [x] **Milestone 2**: Preprocessing, feature engineering, baseline, tabular models, and evaluation pipeline implemented on synthetic data
+- [ ] Zoo access & ethical approval obtained
+- [ ] Real data collection completed
+- [ ] LSTM branch trained & benchmarked on real data
+- [ ] **Milestone 4**: Final results & paper submission
 
-- [x] Research gap, question, and scope finalised (Milestone 1)
-- [x] Preprocessing, feature engineering, baseline, tabular-model, and evaluation
-      pipeline implemented and tested against synthetic data
-- [ ] Zoo access / ethical approval obtained
-- [ ] Real data collection
-- [ ] LSTM branch trained and compared on real data
-- [ ] Final results (Milestone 4)
+---
 
-## Repository Structure
-
-```
+## 📁 Repository Structure
+```text
 stress-classifier-zoo/
 ├── README.md
 ├── requirements.txt
+├── .gitignore
 ├── data/
-│   ├── raw/                        # untouched real logs (gitignored — never committed)
-│   └── processed/                  # synthetic + (later) real session-bin tables
+│   ├── raw/                        # Untouched real logs (gitignored)
+│   └── processed/                  # Session-bin tabular data
 ├── diagrams/
-│   └── architecture_diagram.svg    # system architecture diagram (vector)
+│   └── architecture_diagram.svg    # System architecture diagram
 ├── src/
-│   ├── generate_synthetic_data.py  # synthetic data generator (see warning above)
-│   ├── preprocess.py               # cleaning, encoding, split-key preparation
-│   ├── features.py                 # feature engineering for all 3 model branches
-│   ├── baseline_model.py           # movement/trajectory-only Random Forest
-│   ├── models_tabular.py           # Branch A: Random Forest + SVM
+│   ├── generate_synthetic_data.py  # Synthetic data generator
+│   ├── preprocess.py               # Cleaning, encoding & split-key preparation
+│   ├── features.py                 # Feature engineering for all 3 branches
+│   ├── baseline_model.py           # Movement/trajectory-only Random Forest
+│   ├── models_tabular.py           # Branch A: Random Forest & SVM
 │   ├── models_lstm.py              # Branch B: LSTM-FCN sequence model
-│   └── evaluate.py                 # day-grouped stratified CV + significance tests
+│   └── evaluate.py                 # 5-fold CV & statistical significance tests
 ├── notebooks/
-│   └── exploratory_analysis.ipynb  # (to be added)
+│   └── exploratory_analysis.ipynb  # Interactive EDA & visualization notebook
 └── tests/
-    └── test_preprocess.py
+    └── test_preprocess.py          # Unit tests for preprocessing pipeline
 ```
 
-## Setup
+---
 
+## ⚙️ Installation & Setup
+
+### **1. Clone the Repository**
 ```bash
-python3 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+git clone https://github.com/n-wijerathne/stress-classifier-zoo.git
+cd stress-classifier-zoo
+```
+
+### **2. Create & Activate Virtual Environment**
+* **On macOS/Linux:**
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
+* **On Windows:**
+  ```powershell
+  python -m venv venv
+  .\venv\Scripts\activate
+  ```
+
+### **3. Install Dependencies**
+```bash
 pip install -r requirements.txt
 ```
 
-## Running the Pipeline (on synthetic data)
+---
 
+## 🏃 Running the Pipeline
+
+### **Step 1: Generate Synthetic Session Data**
 ```bash
-# 1. Generate synthetic data (stand-in until real data is approved/collected)
-python3 src/generate_synthetic_data.py
-
-# 2. Preprocess
-python3 src/preprocess.py
-
-# 3. Run cross-validated evaluation: baseline vs. proposed tabular model
-python3 src/evaluate.py
-
-# 4. (Optional, requires `pip install tensorflow`) sanity-check the LSTM architecture
-python3 src/models_lstm.py
+python src/generate_synthetic_data.py
 ```
 
-## Data & Ethics Note
+### **Step 2: Preprocess Data**
+```bash
+python src/preprocess.py
+```
 
-Raw zoo logs (once collected) will **not** be committed to this repository, per the
-ethical considerations in Section 2.1 of the methodology (keeper anonymisation, animal
-welfare, institutional data-sharing terms). Only anonymised, processed session-bin
-tables — or, until then, clearly-labelled synthetic data — are stored under
-`data/processed/`.
+### **Step 3: Run Model Benchmarking & Statistical Validation**
+```bash
+python src/evaluate.py
+```
 
-## Authors
+### **Step 4: (Optional) Run Deep Learning LSTM Architecture**
+```bash
+python src/models_lstm.py
+```
 
-- E.N. Sandeepani Wijerathne (ITBIN-2313-0128)
-- D.B. Senarathna (ITBIN-2313-0105)
+### **Step 5: Run Unit Tests**
+```bash
+pytest tests/
+```
+
+---
+
+## 📊 Experimental Results Summary
+
+| Model Branch | Feature Set | Model Algorithm | F1-Score | Statistical Test vs. Baseline |
+| :--- | :--- | :--- | :--- | :--- |
+| **Baseline** | Trajectory / Movement Only | Random Forest | **35.93%** | Baseline |
+| **Branch A (Proposed)** | Movement + Schedule + Keeper | **Random Forest** | **68.34%** | **Paired $t$-test $p = 0.0365$ ($p < 0.05$)** |
+| **Branch A** | Movement + Schedule + Keeper | SVM (RBF) | **26.55%** | $p = 0.1240$ |
+| **Branch B** | Sequence Feed & Routine | LSTM-FCN / MLP | **45.69%** | **McNemar Test $p = 0.0002$ ($p < 0.001$)** |
+
+---
+
+## 🔒 Data & Ethics Note
+Raw zoo logs will not be committed to this repository per the ethical considerations in Section 2.1 of the methodology (keeper anonymization, animal welfare, institutional terms). Only anonymized, processed session-bin tables are stored under `data/processed/`.
+
+---
+
+## 👥 Authors
+* **E.N. Sandeepani Wijerathne** (ITBIN-2313-0128) — *Horizon Campus*
+* **D.B. Senarathna** (ITBIN-2313-0105) — *Horizon Campus*
