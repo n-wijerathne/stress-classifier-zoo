@@ -4,9 +4,8 @@
 **Milestone:** Milestone 2 — Methodology and Data Description  
 
 ### **Authors & Individual Focus**
-* **E.N. Sandeepani Wijerathne (ITBIN-2313-0128)** — *The Role of Feeding Schedules and Keeper Routines in Predicting Stress-Indicative Behaviours in Captive Zoo Animals*
-* **D.B. Senarathna (ITBIN-2313-0105)** — *Visitor Interaction & Environmental Conditions Focus*
-
+* **E.N. Sandeepani Wijerathne (ITBIN-2313-0128)** 
+* **D.B. Senarathna (ITBIN-2313-0105)** 
 ---
 
 ## 📌 Project Summary
