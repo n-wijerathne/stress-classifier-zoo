@@ -1,4 +1,0 @@
-[
-  "tests/test_preprocess.py::test_parse_time_to_minutes",
-  "tests/test_preprocess.py::test_preprocess_dataset"
-]
