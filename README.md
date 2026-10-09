@@ -3,7 +3,7 @@
 **Module:** IT41043 — Intelligent Systems, Horizon Campus (2026)  
 **Milestone:** Milestone 2 — Methodology and Data Description  
 
-### **Authors & Individual Focus**
+### **Authors**
 * **E.N. Sandeepani Wijerathne (ITBIN-2313-0128)** 
 * **D.B. Senarathna (ITBIN-2313-0105)** 
 ---
