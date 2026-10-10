@@ -158,7 +158,8 @@ agreement is measured with Cohen's kappa (target kappa >= 0.70). `src/inter_anno
 kappa, percent agreement, a bootstrap 95% CI and the confusion matrix from
 `data/processed/inter_annotator_labels.csv` (columns `session_id, coder_a, coder_b`; header in
 `inter_annotator_template.csv`) and writes `results/inter_annotator_agreement.json`.
-**Status:** the agreement results are added to `results/` once the double-coded labels are committed.
+**Status:** not reported. Independent second-coder labels were not recorded for this dataset, so
+inter-annotator agreement was not measured (see Limitations). The script is included for future work.
 
 ## Data & ethics
 
@@ -172,7 +173,7 @@ kappa, percent agreement, a bootstrap 95% CI and the confusion matrix from
 Small dataset (190 sessions, 28 days) from one zoo and two species; a small held-out test set; the
 effect is dominated by one feature; labels come from manual behavioural coding. Results should be read as
 a proof of concept, not a deployable welfare tool.
-
+labels come from manual behavioural coding without a measured inter-annotator agreement.
 ## Contributions
 
 | Member | Contribution |
