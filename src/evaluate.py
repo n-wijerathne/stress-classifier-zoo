@@ -228,7 +228,7 @@ def main():
     fig.tight_layout(); fig.savefig(config.RESULTS_DIR / "f1_baseline_vs_proposed.png", dpi=200); plt.close(fig)
 
     # 7. error analysis on out-of-fold predictions -----------------------------------------
-      oof = oof_predictions("RF", "proposed", dev)
+    oof = oof_predictions("RF", "proposed", dev)
     pd.crosstab(oof.target.map({0: "true_absent", 1: "true_present"}),
                 oof.pred.map({0: "pred_absent", 1: "pred_present"})).to_csv(config.RESULTS_DIR / "confusion_matrix.csv")
     ea = error_analysis(oof)
