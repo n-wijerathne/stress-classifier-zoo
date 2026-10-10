@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1300 1180" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect width="1300" height="1180" fill="#ffffff"/>
+  <text x="650" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a1a2e">System Architecture - Feeding-Schedule &amp; Keeper-Routine Stress Classifier</text>
+
+  <!-- Row 1: data sources -->
+  <rect x="60" y="75" width="360" height="100" rx="8" fill="#dbe9f7" stroke="#2c5f8a" stroke-width="2"/>
+  <text x="240" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Keeper &amp; Feeding Log</text>
+  <text x="240" y="127" text-anchor="middle" font-size="12" fill="#333">Keeper arrival / departure, meal start / end,</text>
+  <text x="240" y="145" text-anchor="middle" font-size="12" fill="#333">inter-meal interval, diet variety score</text>
+
+  <rect x="470" y="75" width="360" height="100" rx="8" fill="#dbe9f7" stroke="#2c5f8a" stroke-width="2"/>
+  <text x="650" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Behavioural Observation Log</text>
+  <text x="650" y="127" text-anchor="middle" font-size="12" fill="#333">Activity level, location changes, boundary time,</text>
+  <text x="650" y="145" text-anchor="middle" font-size="12" fill="#333">rolling stereotypy rate, stress label (present / absent)</text>
+
+  <rect x="880" y="75" width="360" height="100" rx="8" fill="#dbe9f7" stroke="#2c5f8a" stroke-width="2"/>
+  <text x="1060" y="105" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Session Metadata</text>
+  <text x="1060" y="127" text-anchor="middle" font-size="12" fill="#333">Species (elephant / macaque), enclosure,</text>
+  <text x="1060" y="145" text-anchor="middle" font-size="12" fill="#333">observation date, session (morning / afternoon)</text>
+
+  <path d="M240,175 L240,205 L650,205 L650,230" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M650,175 L650,230" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M1060,175 L1060,205 L650,205" fill="none" stroke="#333" stroke-width="2"/>
+
+  <!-- Ingestion -->
+  <rect x="320" y="230" width="660" height="80" rx="8" fill="#f4d9a0" stroke="#8a5a12" stroke-width="2"/>
+  <text x="650" y="258" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Ingestion &amp; Validation  (preprocess.py)</text>
+  <text x="650" y="280" text-anchor="middle" font-size="12" fill="#333">One row per animal-session; schema and label checks; keeper names anonymised;</text>
+  <text x="650" y="296" text-anchor="middle" font-size="12" fill="#333">individual IDs removed from the public file; missing logs excluded, never imputed</text>
+  <path d="M650,310 L650,340" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Preprocessing -->
+  <rect x="320" y="340" width="660" height="80" rx="8" fill="#f4d9a0" stroke="#8a5a12" stroke-width="2"/>
+  <text x="650" y="368" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Feature Preparation  (preprocess.py)</text>
+  <text x="650" y="390" text-anchor="middle" font-size="12" fill="#333">Clock times to minutes; derived durations (keeper presence, meal duration,</text>
+  <text x="650" y="406" text-anchor="middle" font-size="12" fill="#333">keeper-arrival-to-meal); binary target; observation-day group key</text>
+  <path d="M650,420 L650,450" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Feature groups -->
+  <rect x="120" y="450" width="1060" height="110" rx="8" fill="#f4d9a0" stroke="#8a5a12" stroke-width="2"/>
+  <text x="650" y="478" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Feature Groups  (features.py)</text>
+  <text x="650" y="502" text-anchor="middle" font-size="12" fill="#333">Movement: activity level, location changes, boundary time   |   Context: species, enclosure, session</text>
+  <text x="650" y="522" text-anchor="middle" font-size="12" fill="#333">Feeding / keeper: inter-meal interval, diet variety, keeper proximity, time-to-keeper-arrival,</text>
+  <text x="650" y="538" text-anchor="middle" font-size="12" fill="#333">keeper presence, meal duration, keeper-arrival-to-meal   |   Extended: rolling stereotypy rate</text>
+  <path d="M650,560 L650,590" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Split -->
+  <rect x="220" y="590" width="860" height="100" rx="8" fill="#e6dcf2" stroke="#5b3a8a" stroke-width="2"/>
+  <text x="650" y="618" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Day-Grouped Split  (evaluate.py)</text>
+  <text x="650" y="642" text-anchor="middle" font-size="12" fill="#333">Held-out test days (~14%, never used for model selection)  +  development days</text>
+  <text x="650" y="660" text-anchor="middle" font-size="12" fill="#333">Stratified, day-grouped 5-fold CV on development days (10 repeats);</text>
+  <text x="650" y="676" text-anchor="middle" font-size="12" fill="#333">z-scaling and one-hot encoding fitted on training folds only; class weights</text>
+
+  <!-- Branch arrows -->
+  <path d="M500,690 L500,725 L330,725 L330,750" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M800,690 L800,725 L960,725 L960,750" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Baseline -->
+  <rect x="60" y="750" width="540" height="120" rx="8" fill="#f7d3d3" stroke="#a03030" stroke-width="2"/>
+  <text x="330" y="780" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Baseline  (baseline_model.py)</text>
+  <text x="330" y="806" text-anchor="middle" font-size="12" fill="#333">Random Forest on movement + context features</text>
+  <text x="330" y="824" text-anchor="middle" font-size="12" fill="#333">(no feeding-schedule or keeper-routine variables)</text>
+  <text x="330" y="848" text-anchor="middle" font-size="12" fill="#333">Same classifier, folds and class weights as the proposed model</text>
+
+  <!-- Proposed -->
+  <rect x="700" y="750" width="540" height="120" rx="8" fill="#d6ecd6" stroke="#2e7d32" stroke-width="2"/>
+  <text x="970" y="780" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Proposed Classifiers  (models_tabular.py)</text>
+  <text x="970" y="806" text-anchor="middle" font-size="12" fill="#333">Random Forest (primary), SVM (RBF), Gradient Boosting,</text>
+  <text x="970" y="824" text-anchor="middle" font-size="12" fill="#333">Logistic Regression, MLP - movement + context + feeding/keeper features</text>
+  <text x="970" y="848" text-anchor="middle" font-size="12" fill="#333">Final model refitted on all sessions (train_final.py)</text>
+
+  <path d="M330,870 L330,905 L560,905 L560,930" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M970,870 L970,905 L740,905 L740,930" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Evaluation -->
+  <rect x="200" y="930" width="900" height="130" rx="8" fill="#e6dcf2" stroke="#5b3a8a" stroke-width="2"/>
+  <text x="650" y="958" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Evaluation &amp; Comparison  (evaluate.py)</text>
+  <text x="650" y="982" text-anchor="middle" font-size="12" fill="#333">F1 (primary), precision, recall, AUC-ROC - mean ± std across folds; baseline and proposed in one table</text>
+  <text x="650" y="1002" text-anchor="middle" font-size="12" fill="#333">Shapiro-Wilk, then paired t-test or Wilcoxon; Nadeau-Bengio corrected test on repeated CV</text>
+  <text x="650" y="1022" text-anchor="middle" font-size="12" fill="#333">McNemar test on held-out test days; feature-set ablation; out-of-fold permutation importance</text>
+  <text x="650" y="1042" text-anchor="middle" font-size="12" fill="#333">Error analysis of missed stress sessions</text>
+  <path d="M650,1060 L650,1090" fill="none" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Output -->
+  <rect x="320" y="1090" width="660" height="60" rx="8" fill="#cfe8f3" stroke="#1f6f8b" stroke-width="2"/>
+  <text x="650" y="1116" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Output  (results/, models/, predict.py)</text>
+  <text x="650" y="1136" text-anchor="middle" font-size="12" fill="#333">Per-session stress probability + feature-importance report for keepers and researchers</text>
+</svg>

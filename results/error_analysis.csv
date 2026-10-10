@@ -1,0 +1,12 @@
+group,stress_sessions,missed (false negatives),miss_rate,mean_time_to_keeper_arrival_min
+species=Asian Elephant,19,6,0.316,7.8
+species=Toque Macaque,33,13,0.394,10.1
+session=Afternoon,23,9,0.391,8.4
+session=Morning,29,10,0.345,9.9
+enclosure=E1,7,3,0.429,8.0
+enclosure=E2,12,3,0.25,7.8
+enclosure=M1,16,8,0.5,12.6
+enclosure=M2,17,5,0.294,7.7
+ALL missed stress sessions,52,19,0.365,19.5
+ALL correctly found stress sessions,52,0,0.0,3.4
+false positives (non-stress flagged),0,0,,7.7

@@ -1,0 +1,26 @@
+{
+  "model": "RandomForest (class_weight=balanced, 300 trees, min_samples_leaf=3)",
+  "feature_set": "proposed",
+  "numeric_features": [
+    "activity_level",
+    "location_changes",
+    "boundary_time_min",
+    "inter_meal_interval_min",
+    "diet_variety_score",
+    "keeper_proximity_min",
+    "time_to_keeper_arrival_min",
+    "keeper_presence_min",
+    "meal_duration_min",
+    "keeper_arrival_to_meal_start_min"
+  ],
+  "categorical_features": [
+    "species",
+    "enclosure",
+    "session"
+  ],
+  "training_rows": 190,
+  "label": "target (1 = Stress_Present)",
+  "sklearn_version": "1.8.0",
+  "python_version": "3.12.3",
+  "note": "Pickles are sklearn-version specific; re-run `python src/train_final.py` if loading fails."
+}

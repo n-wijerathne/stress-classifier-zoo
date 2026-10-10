@@ -1,0 +1,14 @@
+,mean_f1_drop
+time_to_keeper_arrival_min,0.3509
+inter_meal_interval_min,0.0275
+session,0.0068
+keeper_arrival_to_meal_start_min,0.004
+species,0.0034
+diet_variety_score,0.0029
+activity_level,-0.0034
+location_changes,-0.0059
+boundary_time_min,-0.0063
+keeper_proximity_min,-0.0086
+meal_duration_min,-0.01
+keeper_presence_min,-0.0131
+enclosure,-0.02

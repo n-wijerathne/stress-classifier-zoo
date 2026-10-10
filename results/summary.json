@@ -1,0 +1,11 @@
+{
+  "dev_rows": 162,
+  "test_rows": 28,
+  "baseline_f1_repeated": 0.32495265426755526,
+  "proposed_f1_repeated": 0.6766232612454177,
+  "repeats_proposed_better": "10/10",
+  "nadeau_bengio_p": 4.838093978461455e-05,
+  "fold_test": "paired t-test",
+  "fold_test_p": 0.0033287471400389717,
+  "mcnemar_p": 0.5078125
+}
