@@ -96,14 +96,15 @@ def error_analysis(oof: pd.DataFrame) -> pd.DataFrame:
     rows.append({"group": "ALL missed stress sessions", "stress_sessions": len(pos),
                  "missed (false negatives)": len(fn), "miss_rate": round(len(fn) / len(pos), 3),
                  "mean_time_to_keeper_arrival_min": round(float(fn.time_to_keeper_arrival_min.mean()), 1)})
-    rows.append({"group": "ALL correctly found stress sessions", "stress_sessions": len(pos),
+    rows.append({"group": "ALL correctly found stress sessions", "stress_sessions": len(tp),
                  "missed (false negatives)": 0, "miss_rate": 0.0,
                  "mean_time_to_keeper_arrival_min": round(float(tp.time_to_keeper_arrival_min.mean()), 1)})
     fp = oof[(oof.target == 0) & (oof.pred == 1)]
-    rows.append({"group": "false positives (non-stress flagged)", "stress_sessions": 0,
-                 "missed (false negatives)": 0, "miss_rate": float("nan"),
+    rows.append({"group": "false positives (non-stress sessions flagged; count in stress_sessions column)",
+                 "stress_sessions": len(fp), "missed (false negatives)": 0, "miss_rate": float("nan"),
                  "mean_time_to_keeper_arrival_min": round(float(fp.time_to_keeper_arrival_min.mean()), 1) if len(fp) else float("nan")})
     return pd.DataFrame(rows)
+
 
 
 def mean_std(df: pd.DataFrame, cols=("f1", "precision", "recall", "auc_roc")) -> dict:
