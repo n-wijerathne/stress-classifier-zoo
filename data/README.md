@@ -28,5 +28,3 @@ Columns are renamed to snake_case in `src/preprocess.py`. Derived columns (keepe
 duration, meal duration, keeper-arrival-to-meal interval, binary `target`, `group_key`) are created
 there too and written to `processed/model_ready.csv` (regenerated, not committed).
 
-> Column descriptions follow the field-sheet column names; edit this table if your protocol defines
-> any of them differently.
