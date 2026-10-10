@@ -171,9 +171,8 @@ inter-annotator agreement was not measured (see Limitations). The script is incl
 ## Limitations
 
 Small dataset (190 sessions, 28 days) from one zoo and two species; a small held-out test set; the
-effect is dominated by one feature; labels come from manual behavioural coding. Results should be read as
-a proof of concept, not a deployable welfare tool.
-labels come from manual behavioural coding without a measured inter-annotator agreement.
+effect is dominated by one feature; labels come from manual behavioural coding without a measured
+inter-annotator agreement. Results should be read as a proof of concept, not a deployable welfare tool.
 ## Contributions
 
 | Member | Contribution |
