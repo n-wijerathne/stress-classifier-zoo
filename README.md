@@ -1,9 +1,9 @@
 # Stress Classifier - Zoo Animals (Feeding Schedule & Keeper Routine Focus)
 
-**Module:** IT41043 - Intelligent Systems, Horizon Campus (2026)
-**Research title:** Machine Learning-Based Identification of Stress Behaviours in Zoo Animals
-**Individual focus:** E.N. Sandeepani Wijerathne (ITBIN-2313-0128) 
-                      D.B. Senarathne (ITBIN-2313-0105)
+**Module:** IT41043 - Intelligent Systems, Horizon Campus (2026)  
+**Research title:** Machine Learning-Based Identification of Stress Behaviours in Zoo Animals  
+**Individual focus:** *The Role of Feeding Schedules and Keeper Routines in Predicting Stress-Indicative Behaviours in Captive Zoo Animals*  
+**Authors:** E.N. Sandeepani Wijerathne (ITBIN-2313-0128), D.B. Senarathne (ITBIN-2313-0105)
 
 ## Project summary
 
@@ -28,7 +28,8 @@ identical day-grouped cross-validation. The partner study covers visitor and env
 - [x] Preprocessing, feature engineering, baseline, tabular models and evaluation pipeline run on the **real data**
 - [x] Day-grouped cross-validation, significance tests, ablation, permutation importance, error analysis
 - [x] Final Random Forest model trained and saved (`models/`)
-- [ ] Paper draft (Milestone 3) and final paper (Milestone 4)
+- [x] Paper draft and peer review (Milestone 3)
+- [ ] Final paper (Milestone 4)
 
 > The synthetic-data generator from the Milestone 2 repository has been **removed**. All results
 > below come from the real field data.
@@ -84,11 +85,14 @@ p = 0.003; Nadeau-Bengio corrected test on repeated CV p < 0.001.
 stress-classifier-zoo/
 ├── README.md
 ├── LICENSE
-├── requirements.txt
+├── requirements.txt                # version ranges
+├── requirements-lock.txt           # exact versions used for the reported results
 ├── data/
 │   ├── README.md                   # data dictionary
 │   ├── raw/                        # full-detail logs (gitignored - never committed)
-│   └── processed/animal_stress_data.csv   # real, anonymised session-level data
+│   └── processed/
+│       ├── animal_stress_data.csv          # real, anonymised session-level data
+│       └── inter_annotator_template.csv    # header for the double-coded labels (kappa)
 ├── diagrams/architecture_diagram.svg      # system architecture (vector)
 ├── src/
 │   ├── config.py                   # paths and constants
@@ -98,6 +102,7 @@ stress-classifier-zoo/
 │   ├── models_tabular.py           # RF, SVM, GB, LR, MLP pipelines
 │   ├── evaluate.py                 # day-grouped CV, statistics, ablation, error analysis
 │   ├── train_final.py              # fit + save final model
+│   ├── inter_annotator.py          # Cohen's kappa for double-coded sessions
 │   └── predict.py                  # score new sessions
 ├── notebooks/exploratory_analysis.ipynb
 ├── results/                        # tables and figures produced by evaluate.py
@@ -109,6 +114,7 @@ stress-classifier-zoo/
 
 Tested with **Python 3.12** (scikit-learn 1.8.0, pandas 3.0.2, numpy 2.4.4, scipy 1.17.1,
 statsmodels 0.15.0, matplotlib 3.10.8). Older versions down to Python 3.10 should work (see `requirements.txt`).
+For the **exact** versions behind the reported results, use `pip install -r requirements-lock.txt` (needs Python 3.11 or newer).
 
 ```bash
 git clone https://github.com/n-wijerathne/stress-classifier-zoo.git
@@ -125,6 +131,7 @@ python src/preprocess.py     # validate + engineer features -> data/processed/mo
 python src/evaluate.py       # all experiments -> results/   (about 1-2 minutes)
 python src/train_final.py    # fit and save the final Random Forest -> models/
 python -m pytest tests/      # run the test suite
+python src/inter_annotator.py   # Cohen's kappa; needs data/processed/inter_annotator_labels.csv (see below)
 ```
 
 Score new sessions (same columns as `data/processed/animal_stress_data.csv`, label column optional):
@@ -144,6 +151,15 @@ are scikit-learn-version specific; re-run `train_final.py` if loading fails.
 - Class imbalance is handled with class weights.
 - Statistics: Shapiro-Wilk then paired t-test / Wilcoxon on fold F1; 10x repeated CV with the Nadeau-Bengio corrected t-test; McNemar on the held-out days.
 
+## Annotation reliability (inter-annotator agreement)
+
+Per the methodology, two researchers independently code a subset of sessions (about 10%) and
+agreement is measured with Cohen's kappa (target kappa >= 0.70). `src/inter_annotator.py` computes
+kappa, percent agreement, a bootstrap 95% CI and the confusion matrix from
+`data/processed/inter_annotator_labels.csv` (columns `session_id, coder_a, coder_b`; header in
+`inter_annotator_template.csv`) and writes `results/inter_annotator_agreement.json`.
+**Status:** the agreement results are added to `results/` once the double-coded labels are committed.
+
 ## Data & ethics
 
 - **Data source:** primary data collected by the authors at the National Zoological Gardens, Dehiwala, with the permission of zoo management: scan-sampled behavioural observations plus keeper/feeding logs. No animals were approached, fed or interacted with, and no physiological sampling was done.
@@ -159,11 +175,10 @@ a proof of concept, not a deployable welfare tool.
 
 ## Contributions
 
-<!-- EDIT BEFORE PUSHING: replace with the actual split of work. -->
 | Member | Contribution |
 |---|---|
-| E.N. Sandeepani Wijerathne (ITBIN-2313-0128) | Field data collection ,coding, analysis, writing paper; |
-| D.B. Senarathne (ITBIN-2313-0105) | Field data collection,coding, analysis, writing paper; |
+| E.N. Sandeepani Wijerathne (ITBIN-2313-0128) | Field data collection, behavioural coding, analysis, paper writing |
+| D.B. Senarathne (ITBIN-2313-0105) | Field data collection, behavioural coding, analysis, paper writing |
 
 ## References
 
