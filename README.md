@@ -2,8 +2,8 @@
 
 **Module:** IT41043 - Intelligent Systems, Horizon Campus (2026)
 **Research title:** Machine Learning-Based Identification of Stress Behaviours in Zoo Animals
-**Individual focus:** E.N. Sandeepani Wijerathne (ITBIN-2313-0128) - *The Role of Feeding Schedules and Keeper Routines in Predicting Stress-Indicative Behaviours in Captive Zoo Animals*
-**Group partner:** D.B. Senarathne (ITBIN-2313-0105)
+**Individual focus:** E.N. Sandeepani Wijerathne (ITBIN-2313-0128) 
+                      D.B. Senarathne (ITBIN-2313-0105)
 
 ## Project summary
 
@@ -162,8 +162,8 @@ a proof of concept, not a deployable welfare tool.
 <!-- EDIT BEFORE PUSHING: replace with the actual split of work. -->
 | Member | Contribution |
 |---|---|
-| E.N. Sandeepani Wijerathne (ITBIN-2313-0128) | Field data collection; *(add: coding, analysis, writing ...)* |
-| D.B. Senarathne (ITBIN-2313-0105) | Field data collection; *(add: coding, analysis, writing ...)* |
+| E.N. Sandeepani Wijerathne (ITBIN-2313-0128) | Field data collection ,coding, analysis, writing paper; |
+| D.B. Senarathne (ITBIN-2313-0105) | Field data collection,coding, analysis, writing paper; |
 
 ## References
 
