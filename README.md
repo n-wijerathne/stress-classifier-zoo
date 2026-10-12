@@ -177,12 +177,16 @@ inter-annotator agreement. Results should be read as a proof of concept, not a d
 
 | Member | Contribution |
 |---|---|
-| E.N. Sandeepani Wijerathne (ITBIN-2313-0128) | Field data collection, behavioural coding, analysis, paper writing |
-| D.B. Senarathne (ITBIN-2313-0105) | Field data collection, behavioural coding, analysis, paper writing |
+| E.N. Sandeepani Wijerathne (ITBIN-2313-0128) | Joint and equal contribution: field data collection, behavioural coding, analysis, paper writing |
+| D.B. Senarathne (ITBIN-2313-0105) | Joint and equal contribution: field data collection, behavioural coding, analysis, paper writing|
 
 ## References
 
-The full reference list is in the Milestone 2 report; the paper reference list will be added at Milestone 4.
+The full reference list is in the Milestone 2 report; the paper reference list added at Milestone 4(in tha paper).
+
+## How to cite
+
+Wijerathne, E. N. S., and Senarathna, D. B. (2026). Machine Learning-Based Identification of Stress Behaviours in Zoo Animals: The Role of Feeding Schedules and Keeper Routines. Submitted to IEEE Access (manuscript ID Access-2026-52184). Code and data: https://github.com/n-wijerathne/stress-classifier-zoo
 
 ## License
 
